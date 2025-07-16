@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta property="og:title" content="Robot Drummer: Learning Rhythmic Skills for Humanoid Drumming"/>
+  <meta property="og:url" content="https://robotdrummer.github.io/"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <title>Robot Drummer: Learning Rhythmic Skills for Humanoid Drumming</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" href="static/figures/icon2.png">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="static/js/audioPlayer.js" defer></script>
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const allVideos = document.querySelectorAll("video");
+
+    allVideos.forEach(video => {
+      // Watch for changes to the 'muted' property
+      video.addEventListener("volumechange", () => {
+        if (!video.muted) {
+          // Mute all other videos
+          allVideos.forEach(otherVideo => {
+            if (otherVideo !== video) {
+              otherVideo.muted = true;
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  @media screen and (min-width: 1024px) {
+    .robot-image {
+      max-width: 60%;
+    }
+  }
+</style>
+
+
+<body>
+
+<!-- Header Section -->
+<section class="publication-header">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="column has-text-centered">
+        <h1 class="title is-1 publication-title">Robot Drummer: Learning Rhythmic Skills for Humanoid Drumming</h1>
+        <!-- <div class="is-size-3 publication-authors">arxiv-preprint, 2025</div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Author Info -->
+<section class="publication-author-block">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=qrlNofwAAAAJ&hl=en" target="_blank">Asad Ali Shahid</a><sup>1, 2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.mecc.polimi.it/en/staff/francesco.braghin" target="_blank">Francesco Braghin</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=3un_pPgAAAAJ&hl=en" target="_blank">Loris Roveda</a><sup>1, 2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><br><sup>1</sup> Dalle Molle Institute for Artificial Intelligence, SUPSI-IDSIA, Lugano, Switzerland</span>
+            <span class="author-block"><br><sup>2</sup> Department of Mechanical Engineering, Politecnico di Milano, Italy</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="http://arxiv.org/abs/2507.11498" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Paper Link. -->
+              <!-- <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/document/" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/@TheRobotDrummer" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                    <span>Full Videos</span>
+                  </a>
+                </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (Coming Soon)</span>
+                </a>
+              </span>
+            </div>
+            <div id="toggle-visibility-icon" style="display: none; text-align: right; margin-top: 5px;">
+              <i id="visibility-icon" class="fas fa-eye" style="cursor: pointer;" onclick="toggleControls()"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Teaser -->
+<section class="hero is-small teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="item">
+        <p style="margin-bottom: 30px;">
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="auto"
+            style="width: 100%; height: auto; border-radius: 10px;"
+          >
+            <source src="static/figures/videos/main_final.mp4" type="video/mp4">
+          </video>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Humanoid robots have seen remarkable advances in dexterity, balance, and locomotion, yet their role in expressive domains, such as music performance, remains largely unexplored. Musical tasks, like drumming, present unique challenges, including split-second timing, rapid contacts, and multi-limb coordination over pieces lasting minutes.
+            In this work, we introduce Robot Drummer, a humanoid system capable of expressive, high-precision drumming across a diverse repertoire of songs. We formulate humanoid drumming as sequential fulfillment of timed-contacts and transform drum scores into a Rhythmic Contact Chain. To handle the long-horizon nature of musical performance, we decompose each piece into fixed-length segments and train a single policy across all segments in parallel using reinforcement learning.
+            Through extensive experiments on over thirty popular rock, metal, and jazz tracks, our results demonstrate that Robot Drummer consistently achieves high F1 scores. The learned behaviors exhibit emergent human-like drumming strategies, such as cross-arm strikes and adaptive stick assignments, demonstrating the potential of reinforcement learning to bring humanoid robots into the domain of creative musical performance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<!-- <section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">How does it work?</h2>
+        <div class="content has-text-justified">
+          <p>To be written…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Architecture Image -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/main.png" alt="Architecture of robot drummer" class="robot-image" style="height: auto;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Performance Section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Humanoid Drumming Performance</h2>
+        <p>
+          Performance of specialist RL policies in playing various songs.<br> 
+          Full performances are available on 
+          <a href="https://www.youtube.com/@TheRobotDrummer" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: blue;">YouTube channel</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results Carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <!-- Linkin Park - In the End -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Linkin Park - In the End</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/in_the_end.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- The Police - Roxanne -->
+        <div class="column is-centered has-text-centered">
+          <p><b>The Police - Roxanne</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/roxanne.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Nirvana - Lithium -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Nirvana - Lithium</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/lithium.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Jimi Hendrix - Fire -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Jimi Hendrix - Fire</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/fire.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Eagles - Hotel California -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Eagles - Hotel California</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/hotel_california.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Metallica - One -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Metallica - One</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/one.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Bon Jovi - Livin' on a Prayer -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Bon Jovi - Livin' on a Prayer</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/livin_on_a_prayer.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Foo Fighters - Everlong -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Foo Fighters - Everlong</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/everlong.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- AC/DC - You Shook Me All Night Long -->
+        <div class="column is-centered has-text-centered">
+          <p><b>AC/DC - You Shook Me All Night Long</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/shook_me_all_night.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Nirvana - The Man Who Sold the World -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Nirvana - The Man Who Sold the World</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/the_man_who_sold_the_world.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Guns N' Roses - Knockin' on Heaven's Door -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Guns N' Roses - Knockin' on Heaven's Door</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/knockin_on_heavens_door.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Nirvana - Come As You Are -->
+        <div class="column is-centered has-text-centered">
+          <p><b>Nirvana - Come As You Are</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/come_as_you_are.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- The Police - Message in a Bottle -->
+        <div class="column is-centered has-text-centered">
+          <p><b>The Police - Message in a Bottle</b></p>
+          <video
+            autoplay
+            muted
+            loop
+            controls
+            width="100%" style="border-radius:10px;"
+            controlsList="nodownload"
+          >
+            <source src="static/figures/videos/message_in_a_bottle.mp4" type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Second Results Carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel">
+      
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Linkin Park - In the End</b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/in_the_end.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>The Police - Roxanne</b></p>
+                  <video id="video-livin" autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/roxanne.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Nirvana - Lithium</b></p>
+                  <video id="video-livin" autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/lithium.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Jimi Hendrix - Fire</b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/fire.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Eagles - Hotel California</b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/hotel_california.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Metallica - One</b></p>
+                  <video id="video-livin" autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/one.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Bon Jovi - Livin' on a Prayer</b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/livin_on_a_prayer.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Foo Fighters - Everlong  </b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/everlong.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>AC/DC - You Shook Me All Night Long</b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/shook_me_all_night.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Nirvana - The Man Who Sold the World</b></p>
+                  <video id="video-livin" autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/the_man_who_sold_the_world.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Guns N' Roses - Knockin' on Heaven's Door</b></p>
+                  <video id="video-livin" autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/knockin_on_heavens_door.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>Nirvana - Come As You Are</b></p>
+                  <video id="video-livin" autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/come_as_you_are.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <p><b>The Police - Message in a Bottle </b></p>
+                  <video autoplay controls muted loop width="100%" height="200px" controlsList="nodownload">
+                    <source src="static/figures/videos/message_in_a_bottle.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{shahid2025drummer,
+  title={Robot Drummer: Learning Rhythmic Skills for Humanoid Drumming},
+  author={Shahid, Asad Ali and Braghin, Francesco and Roveda Loris},
+  journal={arXiv preprint arXiv:2507.11498},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content has-text-centered">
+        <p>
+          This website is licensed under a 
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+            Creative Commons Attribution-ShareAlike 4.0 International License
+          </a>.
+        </p>
+        <p>
+          Website source code based on the 
+          <a href="https://nerfies.github.io/">Nerfies</a> project page.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
